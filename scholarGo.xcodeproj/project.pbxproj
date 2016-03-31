@@ -15,6 +15,15 @@
 		3E84D2C71CA95C6F00536EF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E84D2C51CA95C6F00536EF6 /* LaunchScreen.storyboard */; };
 		3E84D2D21CA95C6F00536EF6 /* scholarGoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D2D11CA95C6F00536EF6 /* scholarGoTests.m */; };
 		3E84D2DD1CA95C6F00536EF6 /* scholarGoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D2DC1CA95C6F00536EF6 /* scholarGoUITests.m */; };
+		3E84D2F01CA95D3600536EF6 /* YJWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D2EF1CA95D3600536EF6 /* YJWebViewController.m */; };
+		3E84D2F61CA95D6000536EF6 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3E84D2F21CA95D6000536EF6 /* MBProgressHUD.bundle */; };
+		3E84D2F71CA95D6000536EF6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D2F41CA95D6000536EF6 /* MBProgressHUD.m */; };
+		3E84D2F91CA95D6600536EF6 /* MBProgressHUD+HM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D2F81CA95D6600536EF6 /* MBProgressHUD+HM.m */; };
+		3E84D2FB1CA95D7200536EF6 /* favoriteWebsite.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E84D2FA1CA95D7200536EF6 /* favoriteWebsite.plist */; };
+		3E84D2FD1CA95E0500536EF6 /* YJCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E84D2FC1CA95E0500536EF6 /* YJCollectionViewCell.xib */; };
+		3E84D3001CA95E4A00536EF6 /* YJFavoriteWebsite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D2FF1CA95E4A00536EF6 /* YJFavoriteWebsite.m */; };
+		3E84D3031CA95E5800536EF6 /* YJCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D3021CA95E5800536EF6 /* YJCollectionViewCell.m */; };
+		3E84D3151CAB944800536EF6 /* YJBookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D3141CAB944800536EF6 /* YJBookmarkViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +60,21 @@
 		3E84D2D81CA95C6F00536EF6 /* scholarGoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = scholarGoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E84D2DC1CA95C6F00536EF6 /* scholarGoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scholarGoUITests.m; sourceTree = "<group>"; };
 		3E84D2DE1CA95C6F00536EF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E84D2EE1CA95D3600536EF6 /* YJWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJWebViewController.h; sourceTree = "<group>"; };
+		3E84D2EF1CA95D3600536EF6 /* YJWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJWebViewController.m; sourceTree = "<group>"; };
+		3E84D2F21CA95D6000536EF6 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		3E84D2F31CA95D6000536EF6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		3E84D2F41CA95D6000536EF6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		3E84D2F51CA95D6000536EF6 /* MBProgressHUD+HM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+HM.h"; sourceTree = "<group>"; };
+		3E84D2F81CA95D6600536EF6 /* MBProgressHUD+HM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+HM.m"; sourceTree = "<group>"; };
+		3E84D2FA1CA95D7200536EF6 /* favoriteWebsite.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = favoriteWebsite.plist; sourceTree = "<group>"; };
+		3E84D2FC1CA95E0500536EF6 /* YJCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YJCollectionViewCell.xib; sourceTree = "<group>"; };
+		3E84D2FE1CA95E4A00536EF6 /* YJCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJCollectionViewCell.h; sourceTree = "<group>"; };
+		3E84D2FF1CA95E4A00536EF6 /* YJFavoriteWebsite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJFavoriteWebsite.m; sourceTree = "<group>"; };
+		3E84D3011CA95E5100536EF6 /* YJFavoriteWebsite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YJFavoriteWebsite.h; sourceTree = "<group>"; };
+		3E84D3021CA95E5800536EF6 /* YJCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJCollectionViewCell.m; sourceTree = "<group>"; };
+		3E84D3131CAB944800536EF6 /* YJBookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJBookmarkViewController.h; sourceTree = "<group>"; };
+		3E84D3141CAB944800536EF6 /* YJBookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJBookmarkViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,15 +125,10 @@
 		3E84D2B61CA95C6F00536EF6 /* scholarGo */ = {
 			isa = PBXGroup;
 			children = (
-				3E84D2BA1CA95C6F00536EF6 /* AppDelegate.h */,
-				3E84D2BB1CA95C6F00536EF6 /* AppDelegate.m */,
-				3E84D2BD1CA95C6F00536EF6 /* ViewController.h */,
-				3E84D2BE1CA95C6F00536EF6 /* ViewController.m */,
-				3E84D2C01CA95C6F00536EF6 /* Main.storyboard */,
-				3E84D2C31CA95C6F00536EF6 /* Assets.xcassets */,
-				3E84D2C51CA95C6F00536EF6 /* LaunchScreen.storyboard */,
-				3E84D2C81CA95C6F00536EF6 /* Info.plist */,
-				3E84D2B71CA95C6F00536EF6 /* Supporting Files */,
+				3E84D2ED1CA95CA000536EF6 /* Other */,
+				3E84D2EC1CA95C9900536EF6 /* Model */,
+				3E84D2EB1CA95C9100536EF6 /* Controller */,
+				3E84D2EA1CA95C8A00536EF6 /* View */,
 			);
 			path = scholarGo;
 			sourceTree = "<group>";
@@ -117,6 +136,9 @@
 		3E84D2B71CA95C6F00536EF6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E84D2C81CA95C6F00536EF6 /* Info.plist */,
+				3E84D2FA1CA95D7200536EF6 /* favoriteWebsite.plist */,
+				3E84D2F11CA95D5200536EF6 /* lib */,
 				3E84D2B81CA95C6F00536EF6 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +160,63 @@
 				3E84D2DE1CA95C6F00536EF6 /* Info.plist */,
 			);
 			path = scholarGoUITests;
+			sourceTree = "<group>";
+		};
+		3E84D2EA1CA95C8A00536EF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E84D2C51CA95C6F00536EF6 /* LaunchScreen.storyboard */,
+				3E84D2C01CA95C6F00536EF6 /* Main.storyboard */,
+				3E84D2FC1CA95E0500536EF6 /* YJCollectionViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		3E84D2EB1CA95C9100536EF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3E84D2BD1CA95C6F00536EF6 /* ViewController.h */,
+				3E84D2BE1CA95C6F00536EF6 /* ViewController.m */,
+				3E84D2EE1CA95D3600536EF6 /* YJWebViewController.h */,
+				3E84D2EF1CA95D3600536EF6 /* YJWebViewController.m */,
+				3E84D3131CAB944800536EF6 /* YJBookmarkViewController.h */,
+				3E84D3141CAB944800536EF6 /* YJBookmarkViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3E84D2EC1CA95C9900536EF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E84D3011CA95E5100536EF6 /* YJFavoriteWebsite.h */,
+				3E84D2FE1CA95E4A00536EF6 /* YJCollectionViewCell.h */,
+				3E84D2FF1CA95E4A00536EF6 /* YJFavoriteWebsite.m */,
+				3E84D3021CA95E5800536EF6 /* YJCollectionViewCell.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3E84D2ED1CA95CA000536EF6 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				3E84D2B71CA95C6F00536EF6 /* Supporting Files */,
+				3E84D2C31CA95C6F00536EF6 /* Assets.xcassets */,
+				3E84D2BA1CA95C6F00536EF6 /* AppDelegate.h */,
+				3E84D2BB1CA95C6F00536EF6 /* AppDelegate.m */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		3E84D2F11CA95D5200536EF6 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				3E84D2F81CA95D6600536EF6 /* MBProgressHUD+HM.m */,
+				3E84D2F21CA95D6000536EF6 /* MBProgressHUD.bundle */,
+				3E84D2F31CA95D6000536EF6 /* MBProgressHUD.h */,
+				3E84D2F41CA95D6000536EF6 /* MBProgressHUD.m */,
+				3E84D2F51CA95D6000536EF6 /* MBProgressHUD+HM.h */,
+			);
+			name = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +281,7 @@
 		3E84D2AC1CA95C6F00536EF6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = YJ;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "姚家庆";
 				TargetAttributes = {
@@ -247,8 +327,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E84D2C71CA95C6F00536EF6 /* LaunchScreen.storyboard in Resources */,
+				3E84D2FD1CA95E0500536EF6 /* YJCollectionViewCell.xib in Resources */,
+				3E84D2F61CA95D6000536EF6 /* MBProgressHUD.bundle in Resources */,
 				3E84D2C41CA95C6F00536EF6 /* Assets.xcassets in Resources */,
 				3E84D2C21CA95C6F00536EF6 /* Main.storyboard in Resources */,
+				3E84D2FB1CA95D7200536EF6 /* favoriteWebsite.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,9 +356,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E84D2F01CA95D3600536EF6 /* YJWebViewController.m in Sources */,
+				3E84D3151CAB944800536EF6 /* YJBookmarkViewController.m in Sources */,
 				3E84D2BF1CA95C6F00536EF6 /* ViewController.m in Sources */,
+				3E84D2F71CA95D6000536EF6 /* MBProgressHUD.m in Sources */,
+				3E84D3031CA95E5800536EF6 /* YJCollectionViewCell.m in Sources */,
 				3E84D2BC1CA95C6F00536EF6 /* AppDelegate.m in Sources */,
+				3E84D2F91CA95D6600536EF6 /* MBProgressHUD+HM.m in Sources */,
 				3E84D2B91CA95C6F00536EF6 /* main.m in Sources */,
+				3E84D3001CA95E4A00536EF6 /* YJFavoriteWebsite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +588,7 @@
 				3E84D2E31CA95C6F00536EF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E84D2E41CA95C6F00536EF6 /* Build configuration list for PBXNativeTarget "scholarGoTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +597,7 @@
 				3E84D2E61CA95C6F00536EF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E84D2E71CA95C6F00536EF6 /* Build configuration list for PBXNativeTarget "scholarGoUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +606,7 @@
 				3E84D2E91CA95C6F00536EF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
