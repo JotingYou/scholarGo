@@ -8,8 +8,9 @@
 
 #import "YJWebViewController.h"
 #import "MBProgressHUD+HM.h"
+#import "YJBookmarkViewController.h"
 #define kSearchUrl @"https://m.baidu.com/s?word"
-@interface YJWebViewController ()<UIWebViewDelegate,UITextFieldDelegate,UIScrollViewDelegate>
+@interface YJWebViewController ()<UIWebViewDelegate,UITextFieldDelegate,UIScrollViewDelegate,YJBookmarkViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 //判断页面是否正在加载
 @property (nonatomic,assign,getter=isloading) BOOL loading;
@@ -25,12 +26,7 @@
 @end
 
 @implementation YJWebViewController
-//-(NSString *)searchWords{
-//    if (!_searchWords) {
-//        _searchWords=[[NSString alloc]init];
-//    }
-//    return _searchWords;
-//}
+
 #pragma mark - toolbar Action
 - (IBAction)goBack:(id)sender {
     if ([self.webView canGoBack]) {
@@ -62,16 +58,13 @@
     
 }
 - (IBAction)goHome:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(YJWebViewController:)]) {
+            [self.delegate YJWebViewController:self];
+        }
+    }];
 }
-- (IBAction)addToBookmarks:(id)sender {
-//    YJBookmarkView *bookmarkView=[[YJBookmarkView alloc]init];
-//    bookmarkView.bounds=CGRectMake(0, 0, 30, 50);
-//    [self.view addSubview:bookmarkView];
-//    bookmarkView.translatesAutoresizingMaskIntoConstraints=NO;
-//    [bookmarkView addConstraint:[NSLayoutConstraint constraintWithItem:bookmarkView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-    
-}
+
 - (IBAction)share:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string =[NSString stringWithFormat:@"%@",[self.currentRequest URL]];
@@ -182,7 +175,23 @@
 
 
 }
-
+-(void)prepareForSegue:(UIStoryboardSegue  *)segue sender:(id)sender{
+    id destVc=segue.destinationViewController;
+    if ([destVc isKindOfClass:[YJBookmarkViewController class]]) {
+        YJBookmarkViewController *bookVC=destVc;
+        bookVC.currentWebsite=[NSString stringWithFormat:@"%@",[self.currentRequest URL]];
+        //删除http://
+        bookVC.currentWebsite=[bookVC.currentWebsite substringFromIndex:[self.currentRequest URL].scheme.length+3];
+        bookVC.delegate=self;
+        
+    }
+}
+-(void)YJBookmarkViewController:(YJBookmarkViewController *)bookmarkController withWebsite:(NSString *)website{
+    self.searchWords=website;
+    NSString *url=[NSString stringWithFormat:@"http://%@",self.searchWords];
+    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [self.webView loadRequest:request];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

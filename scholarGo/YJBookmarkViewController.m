@@ -8,19 +8,30 @@
 
 #import "YJBookmarkViewController.h"
 #import "YJFavoriteWebsite.h"
-@interface YJBookmarkViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UIView *addView;
-@property (weak, nonatomic) IBOutlet UITextField *websiteAddressTxt;
-@property (weak, nonatomic) IBOutlet UITextField *webNameTxt;
+#import "YJAddBookmarkView.h"
+@interface YJBookmarkViewController ()<UITableViewDelegate,UITableViewDataSource,YJAddBookmarkViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+//存放plist文件地址
+@property (nonatomic,copy) NSString *plistPath;
 @property (nonatomic,strong) NSMutableArray *favoriteWebsites;
+@property (nonatomic,strong) YJAddBookmarkView *addView;
+
 @end
 
 @implementation YJBookmarkViewController
 #pragma mark - 懒加载
+-(NSString *)plistPath{
+    if (!_plistPath) {
+        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+        _plistPath=[doc stringByAppendingPathComponent:@"favoriteWebsite.plist"];
+    }
+    return  _plistPath;
+}
 -(NSMutableArray *)favoriteWebsites{
     if (!_favoriteWebsites) {
-        NSString *path=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite.plist" ofType:nil];
-        NSArray *array=[NSArray arrayWithContentsOfFile:path];
+        
+
+        NSArray *array=[NSArray arrayWithContentsOfFile:self.plistPath];
         NSMutableArray *arrayM=[NSMutableArray array];
         for (NSDictionary *dict in array) {
             YJFavoriteWebsite *model=[YJFavoriteWebsite favoriteWebsiteWithDictionary:dict];
@@ -29,6 +40,15 @@
         _favoriteWebsites=arrayM;
     }
     return _favoriteWebsites;
+}
+-(YJAddBookmarkView *)addView{
+    if (!_addView) {
+        _addView=[[YJAddBookmarkView alloc]init];
+        _addView.bounds=CGRectMake(0,0, 300, 150);
+        _addView.websiteTxt.text=self.currentWebsite;
+        _addView.delegate=self;
+    }
+    return _addView;
 }
 -(BOOL)prefersStatusBarHidden{
     return YES;
@@ -45,37 +65,86 @@
     cell.detailTextLabel.text=website.website;
     return cell;
 }
-#pragma mark - toolbar动作
-- (IBAction)add:(id)sender {
-    [UIView animateWithDuration:1 animations:^{
-        self.addView.alpha=0.6;
-    } completion:^(BOOL finished) {
-        self.addView.alpha=1;
-        self.addView.hidden=NO;
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YJFavoriteWebsite *website=self.favoriteWebsites[indexPath.row];
+
+    [self dismissViewControllerAnimated:YES completion:^{if ([self.delegate respondsToSelector:@selector(YJBookmarkViewController:withWebsite:)]) {
+        [self.delegate YJBookmarkViewController:self withWebsite:website.website];
+    }
     }];
     
+
+}
+//设置编辑类型
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    //删除
+    [self.favoriteWebsites removeObjectAtIndex:indexPath.row];
+    NSMutableArray *arrayM=[NSMutableArray array];
+    for (YJFavoriteWebsite *website  in self.favoriteWebsites) {
+        NSDictionary *dict=[NSDictionary dictionaryWithObjects:@[website.name,website.website,website.icon] forKeys:@[@"name",@"website",@"icon"]];
+        
+        
+        [arrayM addObject:dict];
+    }
+    //写入文件
+    [arrayM writeToFile:self.plistPath atomically:YES];
+    //重新加载
+    [self.tableView reloadData];
+}
+#pragma mark - toolbar动作
+- (IBAction)add:(id)sender {
+
     
+    [self.view addSubview:self.addView];
+    [self.addView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    //添加约束
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:300]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:150]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.addView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
 }
 - (IBAction)finish:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark - addView动作
-- (IBAction)addBookmark:(id)sender {
-    NSLog(@"添加成功");
+-(void)YJAddBookmarkView:(YJAddBookmarkView *)addView didClicked:(UIButton *)button{
+    if (button.tag) {
+        //添加
+        
+        YJFavoriteWebsite *newWeb=[[YJFavoriteWebsite alloc]init];
+        newWeb.website=addView.websiteTxt.text;
+        newWeb.name=addView.webNameTxt.text;
+        newWeb.icon=@"w";
+        [self.favoriteWebsites addObject:newWeb];
+        //模型转字典
+        NSMutableArray *arrayM=[NSMutableArray array];
+        for (YJFavoriteWebsite *website  in self.favoriteWebsites) {
+            NSDictionary *dict=[NSDictionary dictionaryWithObjects:@[website.name,website.website,website.icon] forKeys:@[@"name",@"website",@"icon"]];
+            
+            
+            [arrayM addObject:dict];
+        }
+//        NSLog(@"path=%@",self.plistPath);
+        [arrayM writeToFile:self.plistPath atomically:YES];
+        
+//        NSLog(@"添加成功");
+        //重新加载
+        [self.tableView reloadData];
+        [addView removeFromSuperview];
+    }else{
+        [addView removeFromSuperview];
+
+        //取消
+    }
 }
-- (IBAction)cancleAdd:(id)sender {
-    [UIView animateWithDuration:1 animations:^{
-        self.addView.alpha=0;
-    } completion:^(BOOL finished) {
-        self.addView.hidden=YES;
-    }];
-   
-}
+
 
 #pragma mark - 主程序
 - (void)viewDidLoad {
-    self.addView.hidden=YES;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.

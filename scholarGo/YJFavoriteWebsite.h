@@ -12,6 +12,7 @@
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,copy) NSString *website;
 @property (nonatomic,copy) NSString *icon;
+
 -(instancetype)initWithDictionary:(NSDictionary *)dict;
 +(instancetype)favoriteWebsiteWithDictionary:(NSDictionary *)dict;
 

@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YJBookmarkViewController;
+@protocol YJBookmarkViewControllerDelegate <NSObject>
+@optional
+-(void)YJBookmarkViewController:(YJBookmarkViewController*)bookmarkController withWebsite:(NSString*)website;
 
+@end
 @interface YJBookmarkViewController : UIViewController
+@property (nonatomic,copy) NSString *currentWebsite;
+@property (nonatomic,weak) id<YJBookmarkViewControllerDelegate>delegate;
 
 @end

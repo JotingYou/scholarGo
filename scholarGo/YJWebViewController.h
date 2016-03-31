@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YJWebViewController;
+@protocol YJWebViewControllerDelegate <NSObject>
+@optional
+-(void)YJWebViewController:(YJWebViewController*)webViewController;
 
+@end
 @interface YJWebViewController : UIViewController
+@property (nonatomic,weak) id<YJWebViewControllerDelegate>delegate;
+
 @property (nonatomic,copy) NSString *searchWords;
 @end

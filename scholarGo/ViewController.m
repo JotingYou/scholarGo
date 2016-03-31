@@ -10,7 +10,7 @@
 #import "YJCollectionViewCell.h"
 #import "YJWebViewController.h"
 #import "YJFavoriteWebsite.h"
-@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
+@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,YJWebViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTxt;
 @property (nonatomic,strong) NSMutableArray *favoriteWebsites;
@@ -22,7 +22,9 @@
 #pragma mark - *****懒加载*****
 -(NSMutableArray *)favoriteWebsites{
     if (!_favoriteWebsites) {
-        NSString *path=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite" ofType:@"plist"];
+        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+        NSString *path=[doc stringByAppendingPathComponent:@"favoriteWebsite.plist"];
+
         NSArray *arry=[NSArray arrayWithContentsOfFile:path];
         
         NSMutableArray *arryM=[NSMutableArray array];
@@ -35,10 +37,8 @@
     }
     return _favoriteWebsites;
 }
-//关闭自动旋转
-- (BOOL)shouldAutorotate{
-    return NO;
-}
+
+#pragma mark -collectionView代理方法
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *dequeID=@"YJWebCell";
     YJCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:dequeID forIndexPath:indexPath];
@@ -68,11 +68,18 @@
     YJFavoriteWebsite *website=self.favoriteWebsites[indexPath.row];
     [self performSegueWithIdentifier:@"toWebView" sender:website.website];
 }
+#pragma mark - 主程序
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.searchTxt setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [self.collectionView registerClass:[YJCollectionViewCell class] forCellWithReuseIdentifier:@"YJWebCell"];
+    // Do any additional setup after loading the view, typically from a nib.
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     id destVC=segue.destinationViewController;
     if ([destVC isKindOfClass:[YJWebViewController class]]) {
-        YJWebViewController *webVC=[[YJWebViewController alloc]init];
-        webVC=destVC;
+        YJWebViewController *webVC=destVC;
+        webVC.delegate=self;
         webVC.searchWords=sender;
         
     }
@@ -82,13 +89,18 @@
     self.searchTxt.text=nil;
     return YES;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.searchTxt setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [self.collectionView registerClass:[YJCollectionViewCell class] forCellWithReuseIdentifier:@"YJWebCell"];
-    // Do any additional setup after loading the view, typically from a nib.
+//关闭自动旋转
+- (BOOL)shouldAutorotate{
+    return NO;
 }
 
+#pragma mark - YJWebViewController代理方法
+-(void)YJWebViewController:(YJWebViewController *)webViewController{
+    //清除缓存
+    self.favoriteWebsites=nil;
+    //重新加载
+    [self.collectionView reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

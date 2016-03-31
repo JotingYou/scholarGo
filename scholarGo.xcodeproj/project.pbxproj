@@ -24,6 +24,8 @@
 		3E84D3001CA95E4A00536EF6 /* YJFavoriteWebsite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D2FF1CA95E4A00536EF6 /* YJFavoriteWebsite.m */; };
 		3E84D3031CA95E5800536EF6 /* YJCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D3021CA95E5800536EF6 /* YJCollectionViewCell.m */; };
 		3E84D3151CAB944800536EF6 /* YJBookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E84D3141CAB944800536EF6 /* YJBookmarkViewController.m */; };
+		3EE80B951CACDA9500C82B39 /* YJAddBookmark.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE80B941CACDA9500C82B39 /* YJAddBookmark.xib */; };
+		3EE80B9B1CACDB4500C82B39 /* YJAddBookmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE80B9A1CACDB4500C82B39 /* YJAddBookmarkView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,9 @@
 		3E84D3021CA95E5800536EF6 /* YJCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJCollectionViewCell.m; sourceTree = "<group>"; };
 		3E84D3131CAB944800536EF6 /* YJBookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJBookmarkViewController.h; sourceTree = "<group>"; };
 		3E84D3141CAB944800536EF6 /* YJBookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJBookmarkViewController.m; sourceTree = "<group>"; };
+		3EE80B941CACDA9500C82B39 /* YJAddBookmark.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YJAddBookmark.xib; sourceTree = "<group>"; };
+		3EE80B991CACDB4500C82B39 /* YJAddBookmarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJAddBookmarkView.h; sourceTree = "<group>"; };
+		3EE80B9A1CACDB4500C82B39 /* YJAddBookmarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJAddBookmarkView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +173,7 @@
 				3E84D2C51CA95C6F00536EF6 /* LaunchScreen.storyboard */,
 				3E84D2C01CA95C6F00536EF6 /* Main.storyboard */,
 				3E84D2FC1CA95E0500536EF6 /* YJCollectionViewCell.xib */,
+				3EE80B941CACDA9500C82B39 /* YJAddBookmark.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -192,6 +198,8 @@
 				3E84D2FE1CA95E4A00536EF6 /* YJCollectionViewCell.h */,
 				3E84D2FF1CA95E4A00536EF6 /* YJFavoriteWebsite.m */,
 				3E84D3021CA95E5800536EF6 /* YJCollectionViewCell.m */,
+				3EE80B991CACDB4500C82B39 /* YJAddBookmarkView.h */,
+				3EE80B9A1CACDB4500C82B39 /* YJAddBookmarkView.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -328,6 +336,7 @@
 			files = (
 				3E84D2C71CA95C6F00536EF6 /* LaunchScreen.storyboard in Resources */,
 				3E84D2FD1CA95E0500536EF6 /* YJCollectionViewCell.xib in Resources */,
+				3EE80B951CACDA9500C82B39 /* YJAddBookmark.xib in Resources */,
 				3E84D2F61CA95D6000536EF6 /* MBProgressHUD.bundle in Resources */,
 				3E84D2C41CA95C6F00536EF6 /* Assets.xcassets in Resources */,
 				3E84D2C21CA95C6F00536EF6 /* Main.storyboard in Resources */,
@@ -359,6 +368,7 @@
 				3E84D2F01CA95D3600536EF6 /* YJWebViewController.m in Sources */,
 				3E84D3151CAB944800536EF6 /* YJBookmarkViewController.m in Sources */,
 				3E84D2BF1CA95C6F00536EF6 /* ViewController.m in Sources */,
+				3EE80B9B1CACDB4500C82B39 /* YJAddBookmarkView.m in Sources */,
 				3E84D2F71CA95D6000536EF6 /* MBProgressHUD.m in Sources */,
 				3E84D3031CA95E5800536EF6 /* YJCollectionViewCell.m in Sources */,
 				3E84D2BC1CA95C6F00536EF6 /* AppDelegate.m in Sources */,
