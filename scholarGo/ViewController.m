@@ -52,7 +52,6 @@
     CGFloat gapX=([[UIScreen mainScreen]bounds].size.width-3*width)/4;
     CGFloat pointX=gapX*(indexPath.row%3+1)+indexPath.row%3*width;
     CGFloat pointY=gapY*(indexPath.row/3+1)+indexPath.row/3*height;
-    
     cell.frame=CGRectMake(pointX, pointY, width, height);
     YJFavoriteWebsite *website=self.favoriteWebsites[indexPath.row];
     cell.webName.text=website.name;
@@ -93,7 +92,14 @@
 - (BOOL)shouldAutorotate{
     return NO;
 }
+//将屏幕变回竖屏
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 
+{
+    
+    return UIInterfaceOrientationMaskPortrait;
+    
+}
 #pragma mark - YJWebViewController代理方法
 -(void)YJWebViewController:(YJWebViewController *)webViewController{
     //清除缓存

@@ -325,7 +325,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bookmark" width="20" height="25"/>
+        <image name="bookmark" width="16" height="20"/>
         <image name="goback" width="20" height="18"/>
         <image name="goforward" width="20" height="17"/>
         <image name="home" width="20" height="18"/>
