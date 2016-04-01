@@ -166,7 +166,7 @@
 #pragma mark - 主程序
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.webView.allowsLinkPreview=YES;
         NSString *url=[NSString stringWithFormat:@"http://%@",self.searchWords];
         NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     self.searchByAddressText=YES;

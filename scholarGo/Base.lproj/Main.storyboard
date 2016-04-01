@@ -90,6 +90,7 @@
                         <segue destination="h0U-fd-AB7" kind="show" identifier="toWebView" id="HPp-yX-Dnu">
                             <nil key="action"/>
                         </segue>
+                        <segue destination="VJL-JT-7Dq" kind="show" identifier="toBookmarkSegue1" id="7oI-bi-qWd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qpw-h3-rfa" sceneMemberID="firstResponder"/>
@@ -152,7 +153,7 @@
                                     <barButtonItem image="bookmark" id="fab-46-bbQ">
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="VJL-JT-7Dq" kind="show" id="UR5-aG-TCj"/>
+                                            <segue destination="VJL-JT-7Dq" kind="show" identifier="toBookmarkSegue2" id="UR5-aG-TCj"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="D6A-TS-p9G"/>
@@ -332,4 +333,7 @@
         <image name="refresh" width="20" height="17"/>
         <image name="share" width="20" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UR5-aG-TCj"/>
+    </inferredMetricsTieBreakers>
 </document>

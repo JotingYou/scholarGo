@@ -10,23 +10,88 @@
 #import "YJCollectionViewCell.h"
 #import "YJWebViewController.h"
 #import "YJFavoriteWebsite.h"
-@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,YJWebViewControllerDelegate>
+@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,UIViewControllerPreviewingDelegate,YJWebViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTxt;
+@property (nonatomic,copy) NSString *searchWords;
 @property (nonatomic,strong) NSMutableArray *favoriteWebsites;
+@property (nonatomic,copy) NSString *plistPath;
+//@property (nonatomic,strong) NSArray *PreActions;
 
 @end
 
 @implementation ViewController
+#pragma mark -3DTouch 代理实现
+//pop
+-(void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit{
+    [self performSegueWithIdentifier:@"toWebView" sender:self.searchWords];
+}
+//Peek
+-(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location{
+
+    YJCollectionViewCell *cell=(YJCollectionViewCell *)[previewingContext sourceView];
+    __weak typeof(self) wkSelf=self;
+    UIViewController *vc=[UIViewController new];
+    UIWebView *preWebView=[[UIWebView alloc]init];
+    preWebView.scalesPageToFit=YES;
+    vc.view=preWebView;
+    wkSelf.searchWords=cell.website;
+    NSString *url=[NSString stringWithFormat:@"http://%@",wkSelf.searchWords];
+    NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [preWebView loadRequest:request];
+//    //上拉选项
+//    UIPreviewAction *delete=[UIPreviewAction actionWithTitle:@"Delete" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+//        [wkSelf.favoriteWebsites removeObjectAtIndex:cell.tag];
+//        [wkSelf.collectionView reloadData];
+//        //模型转字典
+//        NSMutableArray *arrayM=[NSMutableArray array];
+//        for (YJFavoriteWebsite *website  in self.favoriteWebsites) {
+//            NSDictionary *dict=[NSDictionary dictionaryWithObjects:@[website.name,website.website,website.icon] forKeys:@[@"name",@"website",@"icon"]];
+//            
+//            
+//            [arrayM addObject:dict];
+//        }
+//        //        NSLog(@"path=%@",self.plistPath);
+//        [arrayM writeToFile:self.plistPath atomically:YES];
+//
+//    }];
+//    UIPreviewAction *cancle=[UIPreviewAction actionWithTitle:@"Cancle" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+//        nil;
+//    }];
+//    wkSelf.PreActions=@[delete,cancle];
+    return vc;
+}
+//-(NSArray<id<UIPreviewActionItem>> *)previewActionItems
+//{
+//    return self.PreActions;
+//}
+//检测3D Touch是否可用
+
+-(BOOL)is3DTouchAvailiable
+{
+    if(self.traitCollection.forceTouchCapability==UIForceTouchCapabilityAvailable){
+        return YES;
+    }
+    return NO;
+}
 
 #pragma mark - *****懒加载*****
+
+-(NSString *)plistPath{
+    if (!_plistPath) {
+        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+        _plistPath=[doc stringByAppendingPathComponent:@"favoriteWebsite.plist"];
+    }
+    return  _plistPath;
+}
+//存放收藏网站信息
 -(NSMutableArray *)favoriteWebsites{
     if (!_favoriteWebsites) {
-        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-        NSString *path=[doc stringByAppendingPathComponent:@"favoriteWebsite.plist"];
-
-        NSArray *arry=[NSArray arrayWithContentsOfFile:path];
-        
+        NSArray *arry=[NSArray arrayWithContentsOfFile:self.plistPath];
+        if (!arry.count) {
+            self.plistPath=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite.plist" ofType:nil];
+            arry=[NSArray arrayWithContentsOfFile:self.plistPath];
+        }
         NSMutableArray *arryM=[NSMutableArray array];
         
         for (NSDictionary *dict in arry) {
@@ -56,7 +121,16 @@
     YJFavoriteWebsite *website=self.favoriteWebsites[indexPath.row];
     cell.webName.text=website.name;
     cell.webIcon.image=[UIImage imageNamed:website.icon];
+    cell.website=website.website;
+    cell.tag=indexPath.row;
     cell.backgroundView.backgroundColor=[UIColor blackColor];
+    //注册3DTouch
+
+    if([self is3DTouchAvailiable])
+    {
+        [self registerForPreviewingWithDelegate:self sourceView:cell];
+    }
+
     return cell;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -64,14 +138,17 @@
     return self.favoriteWebsites.count;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"被选中");
     YJFavoriteWebsite *website=self.favoriteWebsites[indexPath.row];
     [self performSegueWithIdentifier:@"toWebView" sender:website.website];
 }
+
 #pragma mark - 主程序
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.searchTxt setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [self.collectionView registerClass:[YJCollectionViewCell class] forCellWithReuseIdentifier:@"YJWebCell"];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

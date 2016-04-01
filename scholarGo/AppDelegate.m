@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+@class YJWebViewController;
 @interface AppDelegate ()
 
 @end
@@ -16,10 +17,34 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    //3D Touch按压程序图标的快捷项
+    //快捷菜单的图标
+    UIApplicationShortcutIcon *icon1=[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeSearch];
+    UIApplicationShortcutIcon *icon2=[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeBookmark];
+    //设置标签
+    UIApplicationShortcutItem *item1=[[UIApplicationShortcutItem alloc]initWithType:@"1" localizedTitle:@"搜索" localizedSubtitle:nil icon:icon1 userInfo:nil];
+    UIApplicationShortcutItem *item2=[[UIApplicationShortcutItem alloc]initWithType:@"2" localizedTitle:@"书签" localizedSubtitle:nil icon:icon2 userInfo:nil];
+    //设置app的快捷菜单
+    [[UIApplication sharedApplication] setShortcutItems:@[item1,item2]];
+
+    
     return YES;
 }
-
+-(void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler{
+    if([shortcutItem.localizedTitle isEqualToString:@"搜索"]){
+        [self.window.rootViewController performSegueWithIdentifier:@"toWebView" sender:@"m.baidu.com" ];
+    }else if([shortcutItem.localizedTitle isEqualToString:@"书签"]){
+        if([self.window.rootViewController isKindOfClass:[UIViewController class]]){
+            [self.window.rootViewController performSegueWithIdentifier:@"toBookmarkSegue1" sender:nil ];
+        }else{
+            [self.window.rootViewController performSegueWithIdentifier:@"toBookmarkSegue2" sender:nil ];
+            
+        }
+        
+    }
+    
+    
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

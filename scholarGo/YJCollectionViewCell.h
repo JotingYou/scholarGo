@@ -11,5 +11,5 @@
 @interface YJCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *webName;
 @property (weak, nonatomic) IBOutlet UIImageView *webIcon;
-
+@property (nonatomic,copy) NSString *website;
 @end
