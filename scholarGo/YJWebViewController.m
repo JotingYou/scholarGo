@@ -7,8 +7,8 @@
 //
 
 #import "YJWebViewController.h"
-#import "MBProgressHUD+HM.h"
 #import "YJBookmarkViewController.h"
+#import "MBProgressHUD+HM.h"
 #define kSearchUrl @"https://m.baidu.com/s?word"
 @interface YJWebViewController ()<UIWebViewDelegate,UITextFieldDelegate,UIScrollViewDelegate,YJBookmarkViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
@@ -69,7 +69,7 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string =[NSString stringWithFormat:@"%@",[self.currentRequest URL]];
     [MBProgressHUD showSuccess:@"网址已复制到剪切板"];
-    
+
 }
 #pragma mark - webView 代理方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -121,8 +121,7 @@
         [self.webView loadRequest:request];
         //NSLog(@"使用搜索引擎加载");
     }else{
-        [MBProgressHUD showError:@"连接失败，请检查网络"];
-        //NSLog(@"加载失败，error=%@",error);
+        [MBProgressHUD showError:@"加载失败"];
     }
     
 }

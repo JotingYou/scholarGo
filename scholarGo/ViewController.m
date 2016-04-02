@@ -114,7 +114,7 @@
     CGFloat gapY=20;
     CGFloat width=95;
     CGFloat height=110;
-    CGFloat gapX=([[UIScreen mainScreen]bounds].size.width-3*width)/4;
+    CGFloat gapX=(self.collectionView.frame.size.width-3*width)/4;
     CGFloat pointX=gapX*(indexPath.row%3+1)+indexPath.row%3*width;
     CGFloat pointY=gapY*(indexPath.row/3+1)+indexPath.row/3*height;
     cell.frame=CGRectMake(pointX, pointY, width, height);
@@ -123,7 +123,6 @@
     cell.webIcon.image=[UIImage imageNamed:website.icon];
     cell.website=website.website;
     cell.tag=indexPath.row;
-    cell.backgroundView.backgroundColor=[UIColor blackColor];
     //注册3DTouch
 
     if([self is3DTouchAvailiable])
@@ -138,7 +137,6 @@
     return self.favoriteWebsites.count;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"被选中");
     YJFavoriteWebsite *website=self.favoriteWebsites[indexPath.row];
     [self performSegueWithIdentifier:@"toWebView" sender:website.website];
 }

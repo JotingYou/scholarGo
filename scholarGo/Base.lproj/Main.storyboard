@@ -9,17 +9,17 @@
         <!--主页-->
         <scene sceneID="PNl-7l-eJ5">
             <objects>
-                <viewController id="qFG-b5-Bdf" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myStorybord" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qFG-b5-Bdf" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C5x-UZ-peH"/>
                         <viewControllerLayoutGuide type="bottom" id="Ddd-W4-rNe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Vz6-RF-fav">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索或输入网站名称" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="H4K-Ex-skh">
-                                <rect key="frame" x="0.0" y="30" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="30"/>
                                 <color key="backgroundColor" red="0.88784358640000005" green="0.88784358640000005" blue="0.88784358640000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OtW-uB-VLE"/>
@@ -31,7 +31,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPc-ch-Sza">
-                                <rect key="frame" x="0.0" y="65" width="600" height="1"/>
+                                <rect key="frame" x="-4" y="65" width="383" height="1"/>
                                 <color key="backgroundColor" red="0.88784358640000005" green="0.88784358640000005" blue="0.88784358640000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="l5L-6S-ZGu"/>
@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cCr-Fb-c7t">
-                                <rect key="frame" x="0.0" y="68" width="600" height="532"/>
+                                <rect key="frame" x="-4" y="68" width="383" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FpF-B1-GfY">
                                     <size key="itemSize" width="50" height="50"/>
@@ -49,19 +49,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cee-vS-Blg" customClass="YJCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="95" height="106"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="95" height="106"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <size key="customSize" width="95" height="106"/>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="qFG-b5-Bdf" id="cyT-Sq-CpV"/>
                                     <outlet property="delegate" destination="qFG-b5-Bdf" id="kd9-bE-Wm1"/>
@@ -83,7 +71,9 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="主页" image="home" id="VD0-8Y-sqs"/>
                     <navigationItem key="navigationItem" title="主页" id="L5a-3E-2rq"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="cCr-Fb-c7t" id="YmB-aU-s4s"/>
                         <outlet property="searchTxt" destination="H4K-Ex-skh" id="fhJ-DU-zBZ"/>
@@ -95,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qpw-h3-rfa" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164" y="345"/>
+            <point key="canvasLocation" x="116" y="345"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="311-jZ-B1D">
@@ -106,18 +96,18 @@
                         <viewControllerLayoutGuide type="bottom" id="A97-Bh-P8H"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ude-Bq-zNY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLq-q9-aAc">
-                                <rect key="frame" x="0.0" y="66" width="600" height="534"/>
+                                <rect key="frame" x="-4" y="66" width="383" height="552"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="h0U-fd-AB7" id="e7w-nx-u0d"/>
                                 </connections>
                             </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dry-iD-bNm">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="-4" y="574" width="383" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="E0f-9d-DSR"/>
                                 </constraints>
@@ -169,7 +159,7 @@
                                 </connections>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpA-b7-KgK">
-                                <rect key="frame" x="0.0" y="65" width="600" height="1"/>
+                                <rect key="frame" x="-4" y="65" width="383" height="1"/>
                                 <color key="backgroundColor" red="0.88784358640000005" green="0.88784358640000005" blue="0.88784358640000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="6Wa-8f-eR3"/>
@@ -179,7 +169,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索或输入网站名称" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iZ1-KQ-Bib">
-                                <rect key="frame" x="0.0" y="30" width="600" height="30"/>
+                                <rect key="frame" x="-4" y="30" width="383" height="30"/>
                                 <color key="backgroundColor" red="0.88784358640000005" green="0.88784358640000005" blue="0.88784358640000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="vor-lh-IKS"/>
@@ -231,11 +221,11 @@
                         <viewControllerLayoutGuide type="bottom" id="vSX-SG-Kha"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Lju-mu-EgX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWO-xl-ax1">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="-4" y="574" width="383" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Ixj-7P-BhS"/>
                                 </constraints>
@@ -257,7 +247,7 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U54-du-kce">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <rect key="frame" x="-4" y="20" width="383" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="3CK-gO-2b9"/>
                                 </constraints>
@@ -267,14 +257,14 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ilc-th-aBh">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <rect key="frame" x="-4" y="64" width="383" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookmarkCell" textLabel="QPj-k8-zTq" detailTextLabel="ggi-mz-SH6" style="IBUITableViewCellStyleSubtitle" id="Al7-WD-GNs">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Al7-WD-GNs" id="CqM-PV-paB">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QPj-k8-zTq">
@@ -322,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmr-6x-b2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="1094"/>
+            <point key="canvasLocation" x="852.5" y="1225.5"/>
         </scene>
     </scenes>
     <resources>
@@ -334,6 +324,6 @@
         <image name="share" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UR5-aG-TCj"/>
+        <segue reference="7oI-bi-qWd"/>
     </inferredMetricsTieBreakers>
 </document>

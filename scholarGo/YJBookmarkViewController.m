@@ -32,6 +32,10 @@
         
 
         NSArray *array=[NSArray arrayWithContentsOfFile:self.plistPath];
+        if (!array.count) {
+            self.plistPath=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite.plist" ofType:nil] ;
+            array=[NSArray arrayWithContentsOfFile:self.plistPath];
+        }
         NSMutableArray *arrayM=[NSMutableArray array];
         for (NSDictionary *dict in array) {
             YJFavoriteWebsite *model=[YJFavoriteWebsite favoriteWebsiteWithDictionary:dict];
