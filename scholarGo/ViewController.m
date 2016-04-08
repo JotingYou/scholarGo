@@ -89,8 +89,8 @@
     if (!_favoriteWebsites) {
         NSArray *arry=[NSArray arrayWithContentsOfFile:self.plistPath];
         if (!arry.count) {
-            self.plistPath=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite.plist" ofType:nil];
-            arry=[NSArray arrayWithContentsOfFile:self.plistPath];
+            NSString *path=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite.plist" ofType:nil];
+            arry=[NSArray arrayWithContentsOfFile:path];
         }
         NSMutableArray *arryM=[NSMutableArray array];
         

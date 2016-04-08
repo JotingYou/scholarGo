@@ -66,5 +66,13 @@
 		<key>icon</key>
 		<string>github</string>
 	</dict>
+	<dict>
+		<key>name</key>
+		<string>Mirror</string>
+		<key>website</key>
+		<string>www.itechzero.com/google-mirror-sites-collect.html</string>
+		<key>icon</key>
+		<string>mirror</string>
+	</dict>
 </array>
 </plist>

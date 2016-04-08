@@ -9,7 +9,8 @@
 #import "YJBookmarkViewController.h"
 #import "YJFavoriteWebsite.h"
 #import "YJAddBookmarkView.h"
-@interface YJBookmarkViewController ()<UITableViewDelegate,UITableViewDataSource,YJAddBookmarkViewDelegate>
+#import "MBProgressHUD+HM.h"
+@interface YJBookmarkViewController ()<UITableViewDelegate,UITableViewDataSource,YJAddBookmarkViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //存放plist文件地址
 @property (nonatomic,copy) NSString *plistPath;
@@ -33,8 +34,8 @@
 
         NSArray *array=[NSArray arrayWithContentsOfFile:self.plistPath];
         if (!array.count) {
-            self.plistPath=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite.plist" ofType:nil] ;
-            array=[NSArray arrayWithContentsOfFile:self.plistPath];
+            NSString *path=[[NSBundle mainBundle]pathForResource:@"favoriteWebsite.plist" ofType:nil] ;
+            array=[NSArray arrayWithContentsOfFile:path];
         }
         NSMutableArray *arrayM=[NSMutableArray array];
         for (NSDictionary *dict in array) {
@@ -50,11 +51,19 @@
         _addView=[[YJAddBookmarkView alloc]init];
         _addView.bounds=CGRectMake(0,0, 300, 150);
         _addView.websiteTxt.text=self.currentWebsite;
+        _addView.webNameTxt.delegate=self;
         _addView.delegate=self;
     }
     return _addView;
 }
 -(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+#pragma mark - TextField代理方法
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    UIButton *btn=[[UIButton alloc]init];
+    btn.tag=1;
+    [self YJAddBookmarkView:self.addView didClicked:btn];
     return YES;
 }
 #pragma mark - tableview代理方法
@@ -118,7 +127,10 @@
 -(void)YJAddBookmarkView:(YJAddBookmarkView *)addView didClicked:(UIButton *)button{
     if (button.tag) {
         //添加
-        
+        if (!addView.webNameTxt.text.length) {
+            [MBProgressHUD showError:@"请输入名称"];
+            return;
+        }
         YJFavoriteWebsite *newWeb=[[YJFavoriteWebsite alloc]init];
         newWeb.website=addView.websiteTxt.text;
         newWeb.name=addView.webNameTxt.text;
@@ -149,7 +161,6 @@
 
 #pragma mark - 主程序
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
